@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Beer" representedClassName=".Beer" syncable="YES" codeGenerationType="category">
+        <attribute name="abv" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ibu" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="rating" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="user_description" optional="YES" attributeType="String" defaultValueString="None" syncable="YES"/>
+        <relationship name="image" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserImage" inverseName="beer" inverseEntity="UserImage" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="beers" inverseEntity="Location" syncable="YES"/>
+        <relationship name="type" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Type" inverseName="beers" inverseEntity="Type" syncable="YES"/>
+        <fetchIndex name="byNameIndex">
+            <fetchIndexElement property="name" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="Location" representedClassName=".Location" syncable="YES" codeGenerationType="category">
+        <attribute name="name" attributeType="String" defaultValueString="Unspecified" syncable="YES"/>
+        <relationship name="beers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Beer" inverseName="location" inverseEntity="Beer" syncable="YES"/>
+        <fetchIndex name="byNameIndex">
+            <fetchIndexElement property="name" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="Type" representedClassName=".Type" syncable="YES" codeGenerationType="category">
+        <attribute name="name" attributeType="String" defaultValueString="None" syncable="YES"/>
+        <attribute name="typeDescription" attributeType="String" syncable="YES"/>
+        <relationship name="beers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Beer" inverseName="type" inverseEntity="Beer" syncable="YES"/>
+        <fetchIndex name="byNameIndex">
+            <fetchIndexElement property="name" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="UserImage" representedClassName=".UserImage" syncable="YES" codeGenerationType="category">
+        <attribute name="data" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <relationship name="beer" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Beer" inverseName="image" inverseEntity="Beer" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Beer" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Location" positionX="-54" positionY="-9" width="128" height="75"/>
+        <element name="Type" positionX="-36" positionY="9" width="128" height="90"/>
+        <element name="UserImage" positionX="-18" positionY="27" width="128" height="75"/>
+    </elements>
+</model>
